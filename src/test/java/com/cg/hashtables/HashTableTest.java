@@ -7,7 +7,7 @@ public class HashTableTest {
 
 
         @Test
-        public void stringParsed_ReturnsFrequency(){
+        public void stringPassed_ReturnsWordFrequency(){
             String string="To be or not to be";
             HashMap<String,Integer> hashMap = new HashMap<>();
             String[] words=string.toLowerCase().split(" ");
@@ -25,7 +25,7 @@ public class HashTableTest {
         }
 
     @Test
-    public void given_a_String_whenPasses_returnsFreq() {
+    public void stringWhenPassed_returnsWordFrequency() {
         String string="Paranoids are not paranoid because they are paranoid but because they keep putting themselves deliberately into paranoid avoidable situations";
         HashTable<String,Integer> hashtable=new HashTable<>();
         String[] words=string.toLowerCase().split(" ");
@@ -42,5 +42,23 @@ public class HashTableTest {
         Assert.assertEquals(3,frequency);
     }
 
+    @Test
+    public void stringPassed_returnsWordFrequency() {
+        String str="Paranoids are not paranoid because they are paranoid but because they keep putting themselves deliberately into paranoid avoidable situations";
+        HashTable<String,Integer> hashtable=new HashTable<>();
+        String[] words=str.toLowerCase().split(" ");
+        for(String s:words)
+        {
+            Integer value = hashtable.get(s);
+            if(value==null)
+                value=1;
+            else
+                value++;
+            hashtable.add(s,value);
+        }
+        hashtable.remove("avoidable");
+        Integer frequency = hashtable.get("avoidable");
+        Assert.assertEquals(null,frequency);
+    }
 
 }
